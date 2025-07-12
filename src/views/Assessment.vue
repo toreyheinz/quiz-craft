@@ -5,15 +5,39 @@
       <div class="progress-bar">
         <div 
           class="progress-fill" 
-          :style="{ width: `${(currentQuestionIndex / totalQuestions) * 100}%` }"
+          :style="{ width: `${(Math.min(currentQuestionIndex + questionsPerPage, totalQuestions) / totalQuestions) * 100}%` }"
         ></div>
       </div>
       <p class="progress-text">
-        Question {{ currentQuestionIndex + 1 }} of {{ totalQuestions }}
+        Questions {{ currentQuestionIndex + 1 }}-{{ Math.min(currentQuestionIndex + questionsPerPage, totalQuestions) }} of {{ totalQuestions }}
       </p>
     </div>
 
     <div v-if="!showResults" class="quiz-content">
+      <div class="navigation top-nav">
+        <button 
+          @click="previousPage" 
+          :disabled="currentPage === 0"
+          class="nav-button"
+        >
+          ← Previous
+        </button>
+        <button 
+          v-if="!isLastPage"
+          @click="nextPage"
+          class="nav-button primary"
+        >
+          Next →
+        </button>
+        <button 
+          v-else
+          @click="submitQuiz"
+          class="nav-button primary"
+        >
+          Submit Quiz
+        </button>
+      </div>
+
       <div class="question-group">
         <h2>{{ currentSubject.name }}</h2>
         <div 
@@ -46,21 +70,19 @@
           :disabled="currentPage === 0"
           class="nav-button"
         >
-          Previous
+          ← Previous
         </button>
         <button 
           v-if="!isLastPage"
           @click="nextPage"
           class="nav-button primary"
-          :disabled="!currentPageAnswered"
         >
-          Next
+          Next →
         </button>
         <button 
           v-else
           @click="submitQuiz"
           class="nav-button primary"
-          :disabled="!allQuestionsAnswered"
         >
           Submit Quiz
         </button>
@@ -71,14 +93,20 @@
       <h2>Quiz Results</h2>
       <div class="score-card">
         <h3>Total Score: {{ score }} / {{ totalQuestions }}</h3>
-        <p>{{ ((score / totalQuestions) * 100).toFixed(1) }}%</p>
+        <p>{{ answeredQuestions > 0 ? ((score / answeredQuestions) * 100).toFixed(1) : 0 }}% of answered questions</p>
+        <div v-if="skippedCount > 0" class="skipped-info">
+          <small>{{ skippedCount }} question{{ skippedCount === 1 ? '' : 's' }} skipped</small>
+        </div>
       </div>
       
       <div class="subject-scores">
         <h3>Score by Subject:</h3>
         <div v-for="subject in subjectScores" :key="subject.name" class="subject-score">
           <span>{{ subject.name }}:</span>
-          <span>{{ subject.score }} / {{ subject.total }} ({{ subject.percentage }}%)</span>
+          <span>
+            {{ subject.score }} / {{ subject.total }} 
+            ({{ subject.percentage }}%{{ subject.skipped > 0 ? `, ${subject.skipped} skipped` : '' }})
+          </span>
         </div>
       </div>
 
@@ -94,7 +122,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
 const route = useRoute()
@@ -106,6 +134,8 @@ const currentPage = ref(0)
 const showResults = ref(false)
 const score = ref(0)
 const subjectScores = ref([])
+const skippedCount = ref(0)
+const answeredQuestions = ref(0)
 
 const questionsPerPage = 5
 
@@ -135,13 +165,6 @@ const isLastPage = computed(() => {
   return (currentPage.value + 1) * questionsPerPage >= totalQuestions.value
 })
 
-const currentPageAnswered = computed(() => {
-  return currentPageQuestions.value.every(q => answers.value[q.id] !== undefined)
-})
-
-const allQuestionsAnswered = computed(() => {
-  return allQuestions.value.every(q => answers.value[q.id] !== undefined)
-})
 
 const getQuestionNumber = (index) => {
   return currentPage.value * questionsPerPage + index + 1
@@ -166,31 +189,67 @@ const submitQuiz = () => {
 
 const calculateScore = () => {
   let totalScore = 0
+  let totalSkipped = 0
+  let totalAnswered = 0
   const subjectData = {}
 
   assessmentData.value.subjects.forEach(subject => {
-    subjectData[subject.name] = { correct: 0, total: 0 }
+    subjectData[subject.name] = { correct: 0, total: 0, skipped: 0, answered: 0 }
     
     subject.questions.forEach(question => {
       subjectData[subject.name].total++
-      if (answers.value[question.id] === question.correctAnswer) {
-        totalScore++
-        subjectData[subject.name].correct++
+      
+      if (answers.value[question.id] === undefined) {
+        // Question was skipped
+        totalSkipped++
+        subjectData[subject.name].skipped++
+      } else {
+        // Question was answered
+        totalAnswered++
+        subjectData[subject.name].answered++
+        
+        if (answers.value[question.id] === question.correctAnswer) {
+          totalScore++
+          subjectData[subject.name].correct++
+        }
       }
     })
   })
 
   score.value = totalScore
+  skippedCount.value = totalSkipped
+  answeredQuestions.value = totalAnswered
   
   subjectScores.value = Object.entries(subjectData).map(([name, data]) => ({
     name,
     score: data.correct,
     total: data.total,
-    percentage: ((data.correct / data.total) * 100).toFixed(1)
+    skipped: data.skipped,
+    percentage: data.answered > 0 
+      ? ((data.correct / data.answered) * 100).toFixed(1) 
+      : '0.0'
   }))
 }
 
+const handleKeydown = (event) => {
+  // Only handle arrow keys when not in results view
+  if (showResults.value) return
+  
+  // Don't interfere with form inputs
+  if (event.target.tagName === 'INPUT' || event.target.tagName === 'TEXTAREA') return
+  
+  if (event.key === 'ArrowLeft' && currentPage.value > 0) {
+    previousPage()
+  } else if (event.key === 'ArrowRight') {
+    if (!isLastPage.value) {
+      nextPage()
+    }
+  }
+}
+
 onMounted(async () => {
+  // Add keyboard event listener
+  window.addEventListener('keydown', handleKeydown)
   const assessmentId = route.params.assessment
   
   try {
@@ -213,6 +272,11 @@ onMounted(async () => {
     console.error('Error loading assessment:', error)
     router.push('/')
   }
+})
+
+onUnmounted(() => {
+  // Remove keyboard event listener
+  window.removeEventListener('keydown', handleKeydown)
 })
 </script>
 
@@ -308,9 +372,19 @@ onMounted(async () => {
 .navigation {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-top: 2rem;
   padding-top: 2rem;
   border-top: 1px solid #e0e0e0;
+}
+
+.top-nav {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  padding-top: 0;
+  padding-bottom: 0;
+  border-top: none;
+  border-bottom: none;
 }
 
 .nav-button {
@@ -373,6 +447,12 @@ onMounted(async () => {
   font-size: 2rem;
   font-weight: bold;
   margin: 0;
+}
+
+.skipped-info {
+  margin-top: 0.5rem;
+  color: #ff9800;
+  font-size: 1rem;
 }
 
 .subject-scores {
