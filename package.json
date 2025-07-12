@@ -1,8 +1,16 @@
 {
-  "name": "assessment-app",
-  "private": true,
-  "version": "0.0.0",
+  "name": "quiz-craft",
+  "private": false,
+  "version": "1.0.0",
+  "description": "Create and take AI-generated assessments with ease",
   "type": "module",
+  "author": "Torey Heinz",
+  "license": "MIT",
+  "keywords": ["quiz", "assessment", "education", "vue", "ai-generated"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/toreyheinz/quiz-craft"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
