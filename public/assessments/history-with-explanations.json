@@ -1,0 +1,26 @@
+{
+  "title": "Ancient History Sample",
+  "description": "A sample assessment demonstrating the explanation feature",
+  "subjects": [
+    {
+      "name": "Ancient Rome",
+      "questions": [
+        {
+          "id": 1,
+          "question": "Who was the first Roman Emperor?",
+          "options": ["Julius Caesar", "Augustus", "Nero", "Marcus Aurelius"],
+          "correctAnswer": 1,
+          "explanation": "Augustus (originally Octavian) became the first Roman Emperor in 27 BCE after defeating Mark Antony and establishing the Roman Empire."
+        },
+        {
+          "id": 2,
+          "question": "What year did the Western Roman Empire fall?",
+          "options": ["410 CE", "476 CE", "527 CE", "1453 CE"],
+          "correctAnswer": 1,
+          "correctAnswerText": "476 CE",
+          "explanation": "The Western Roman Empire fell in 476 CE when the Germanic chieftain Odoacer deposed the last Roman emperor, Romulus Augustulus."
+        }
+      ]
+    }
+  ]
+}

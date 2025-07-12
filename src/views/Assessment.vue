@@ -125,8 +125,12 @@
             </div>
             <div class="correct-answer">
               <span class="label">Correct answer:</span>
-              <span class="answer-text">{{ item.correctAnswer }}</span>
+              <span class="answer-text">{{ item.correctAnswerText || item.correctAnswer }}</span>
             </div>
+          </div>
+          <div v-if="item.explanation" class="explanation">
+            <span class="label">Explanation:</span>
+            <p class="explanation-text">{{ item.explanation }}</p>
           </div>
         </div>
       </div>
@@ -243,6 +247,8 @@ const calculateScore = () => {
             question: question.question,
             userAnswer: question.options[answers.value[question.id]],
             correctAnswer: question.options[question.correctAnswer],
+            correctAnswerText: question.correctAnswerText,
+            explanation: question.explanation,
             subject: subject.name
           })
         }
@@ -598,6 +604,22 @@ onUnmounted(() => {
 .answer-text {
   color: #333;
   font-size: 1rem;
+}
+.explanation {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px dashed #e0e0e0;
+}
+.explanation .label {
+  color: #42b883;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+.explanation-text {
+  color: #495057;
+  line-height: 1.6;
+  margin: 0;
 }
 
 @media (max-width: 600px) {

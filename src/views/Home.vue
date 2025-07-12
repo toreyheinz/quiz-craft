@@ -18,33 +18,18 @@
 
     <div class="upload-section">
       <h2>Create Custom Assessment</h2>
-      <p>Upload a JSON file or paste JSON content to create a custom assessment</p>
       
-      <div class="tab-buttons">
-        <button 
-          @click="activeTab = 'upload'" 
-          :class="{ active: activeTab === 'upload' }"
-          class="tab-button"
-        >
-          Upload File
-        </button>
-        <button 
-          @click="activeTab = 'paste'" 
-          :class="{ active: activeTab === 'paste' }"
-          class="tab-button"
-        >
-          Paste JSON
-        </button>
-        <button 
-          @click="activeTab = 'guide'" 
-          :class="{ active: activeTab === 'guide' }"
-          class="tab-button"
-        >
-          AI Guide
-        </button>
+      <div class="instructions-box">
+        <h3>How to Create AI-Generated Assessments</h3>
+        <ol>
+          <li>Download our <a href="/assessment-generation-instructions.md" download class="download-link">Assessment Generation Instructions</a></li>
+          <li>Upload the instructions file to your AI chat (ChatGPT, Claude, etc.)</li>
+          <li>Use one of the example prompts below (or create your own)</li>
+          <li>Copy the generated JSON and paste it below</li>
+        </ol>
       </div>
 
-      <div v-if="activeTab === 'upload'" class="tab-content">
+      <div class="input-methods">
         <div class="upload-container">
           <input 
             type="file" 
@@ -55,68 +40,64 @@
             class="file-input"
           />
           <label for="file-upload" class="file-label">
-            Choose JSON File
+            <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"/>
+            </svg>
+            Upload JSON File
           </label>
         </div>
+        
+        <div class="divider">
+          <span>OR</span>
+        </div>
+        
+        <div class="paste-container">
+          <textarea 
+            v-model="pastedJson"
+            placeholder="Paste your assessment JSON here..."
+            class="json-textarea"
+            rows="2"
+          ></textarea>
+          <button @click="handlePastedJson" class="submit-button">
+            Create Assessment
+          </button>
+        </div>
       </div>
 
-      <div v-if="activeTab === 'paste'" class="tab-content">
-        <textarea 
-          v-model="pastedJson"
-          placeholder="Paste your assessment JSON here..."
-          class="json-textarea"
-          rows="10"
-        ></textarea>
-        <button @click="handlePastedJson" class="submit-button">
-          Create Assessment
-        </button>
-      </div>
-
-      <div v-if="activeTab === 'guide'" class="tab-content guide-content">
-        <h3>How to Create Assessments with AI</h3>
-        
-        <div class="instructions">
-          <p><strong>Step 1:</strong> Copy one of the example prompts below</p>
-          <p><strong>Step 2:</strong> Paste it into your AI chat client (ChatGPT, Claude, etc.)</p>
-          <p><strong>Step 3:</strong> Copy the generated JSON from the AI's response</p>
-          <p><strong>Step 4:</strong> Switch to the "Paste JSON" tab and paste it there</p>
-        </div>
-
-        <h4>Example Prompts</h4>
+      <div class="example-prompts">
+        <h3>Example Prompts</h3>
+        <p class="prompts-description">Use these prompts with the instructions file for best results:</p>
         
         <div class="prompt-example">
-          <h5>Example 1: Science Assessment</h5>
-          <button @click="copyToClipboard(sciencePrompt)" class="copy-button">Copy Prompt</button>
-          <pre>{{ sciencePrompt }}</pre>
+          <div class="prompt-header">
+            <h4>Environmental Science</h4>
+            <button @click="copyToClipboard(simplePrompt1)" class="copy-button">Copy Prompt</button>
+          </div>
+          <pre>{{ simplePrompt1 }}</pre>
         </div>
-
+        
         <div class="prompt-example">
-          <h5>Example 2: Math Assessment</h5>
-          <button @click="copyToClipboard(mathPrompt)" class="copy-button">Copy Prompt</button>
-          <pre>{{ mathPrompt }}</pre>
+          <div class="prompt-header">
+            <h4>World History</h4>
+            <button @click="copyToClipboard(simplePrompt2)" class="copy-button">Copy Prompt</button>
+          </div>
+          <pre>{{ simplePrompt2 }}</pre>
         </div>
-
+        
         <div class="prompt-example">
-          <h5>Example 3: Language Assessment</h5>
-          <button @click="copyToClipboard(languagePrompt)" class="copy-button">Copy Prompt</button>
-          <pre>{{ languagePrompt }}</pre>
+          <div class="prompt-header">
+            <h4>Mathematics</h4>
+            <button @click="copyToClipboard(simplePrompt3)" class="copy-button">Copy Prompt</button>
+          </div>
+          <pre>{{ simplePrompt3 }}</pre>
         </div>
-
+        
         <div class="prompt-example">
-          <h5>Example 4: Custom Assessment</h5>
-          <button @click="copyToClipboard(customPrompt)" class="copy-button">Copy Prompt</button>
-          <pre>{{ customPrompt }}</pre>
-        </div>
-
-        <div class="tips">
-          <h4>Tips for Best Results:</h4>
-          <ul>
-            <li>Be specific about the topics you want covered</li>
-            <li>Specify the difficulty level clearly</li>
-            <li>Always verify the AI's answers are correct</li>
-            <li>Start with fewer questions to test the format</li>
-            <li>Make sure the JSON is valid before pasting</li>
-          </ul>
+          <div class="prompt-header">
+            <h4>Custom Subject</h4>
+            <button @click="copyToClipboard(simplePromptCustom)" class="copy-button">Copy Prompt</button>
+          </div>
+          <pre>{{ simplePromptCustom }}</pre>
         </div>
       </div>
 
@@ -151,7 +132,6 @@ const availableAssessments = ref([
 const uploadedAssessments = ref([])
 const uploadError = ref('')
 const fileInput = ref(null)
-const activeTab = ref('upload')
 const pastedJson = ref('')
 
 const jsonStructure = `{
@@ -233,6 +213,48 @@ Format the output as a valid JSON file following this exact structure:
 ${jsonStructure}
 
 ${importantNotes}`
+
+// Simplified prompts for use with the instructions file
+const simplePrompt1 = `Create an assessment file for Environmental Science suitable for high school students (grades 9-10).
+
+The assessment should:
+- Have 20 total questions
+- Be divided into 4 subjects: Climate Change, Ecosystems, Pollution, and Conservation
+- Include multiple choice questions only
+- Cover basic concepts and current environmental issues
+- Be at intermediate level
+
+Follow the attached assessment generation instructions.`
+
+const simplePrompt2 = `Create an assessment file for World History focusing on Ancient Civilizations for middle school students.
+
+The assessment should:
+- Have 24 total questions
+- Cover these civilizations: Ancient Egypt, Ancient Greece, Ancient Rome, and Ancient China
+- Include questions about government, culture, achievements, and key historical figures
+- Be at beginner to intermediate level
+
+Follow the attached assessment generation instructions.`
+
+const simplePrompt3 = `Create an assessment file for Algebra I suitable for 8th-9th grade students.
+
+The assessment should:
+- Have 20 total questions
+- Cover 4 topics: Linear Equations, Polynomials, Factoring, and Quadratic Equations
+- Focus on problem-solving and application
+- Be at intermediate level
+
+Follow the attached assessment generation instructions.`
+
+const simplePromptCustom = `Create an assessment file for [YOUR SUBJECT] suitable for [TARGET AUDIENCE].
+
+The assessment should:
+- Have [NUMBER] total questions
+- Cover these topics: [LIST TOPICS]
+- Include [SPECIFY QUESTION TYPES OR FOCUS]
+- Be at [DIFFICULTY] level
+
+Follow the attached assessment generation instructions.`
 
 const allAssessments = computed(() => {
   return [...availableAssessments.value, ...uploadedAssessments.value]
@@ -466,9 +488,6 @@ p {
   margin-bottom: 1.5rem;
 }
 
-.upload-container {
-  margin-bottom: 1rem;
-}
 
 .file-input {
   position: absolute;
@@ -483,8 +502,11 @@ p {
 }
 
 .file-label {
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 1rem 1.5rem;
   background: #42b883;
   color: white;
   border-radius: 4px;
@@ -506,50 +528,91 @@ p {
   margin-top: 1rem;
 }
 
-.tab-buttons {
+.instructions-box {
+  background: #f0f9ff;
+  border: 2px solid #42b883;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.instructions-box h3 {
+  margin: 0 0 1rem 0;
+  color: #2c3e50;
+}
+
+.instructions-box ol {
+  margin: 0;
+  padding-left: 1.5rem;
+  color: #495057;
+  line-height: 1.8;
+}
+
+.instructions-box li {
+  margin-bottom: 0.5rem;
+}
+
+.input-methods {
+  margin-bottom: 3rem;
+}
+
+.upload-container {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.divider {
+  text-align: center;
+  margin: 1.5rem 0;
+  position: relative;
+}
+
+.divider::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #e0e0e0;
+}
+
+.divider span {
+  background: white;
+  padding: 0 1rem;
+  position: relative;
+  color: #999;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+}
+
+.paste-container {
   display: flex;
   gap: 1rem;
-  margin-bottom: 1.5rem;
-  border-bottom: 2px solid #e0e0e0;
+  align-items: center;
 }
 
-.tab-button {
-  padding: 0.75rem 1.5rem;
-  background: none;
-  border: none;
-  border-bottom: 2px solid transparent;
-  color: #666;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: all 0.2s;
-}
-
-.tab-button:hover {
-  color: #333;
-}
-
-.tab-button.active {
-  color: #42b883;
-  border-bottom-color: #42b883;
-}
-
-.tab-content {
-  padding: 1rem 0;
+.upload-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 0.5rem;
+  vertical-align: middle;
 }
 
 .json-textarea {
-  width: 100%;
-  padding: 1rem;
+  flex: 1;
+  padding: 0.75rem;
   border: 1px solid #ddd;
   border-radius: 4px;
   font-family: 'Courier New', monospace;
   font-size: 0.9rem;
-  resize: vertical;
-  min-height: 200px;
+  resize: none;
+  line-height: 1.5;
 }
 
 .submit-button {
-  margin-top: 1rem;
   padding: 0.75rem 1.5rem;
   background: #42b883;
   color: white;
@@ -564,19 +627,20 @@ p {
   background: #35a372;
 }
 
-.guide-content h3 {
-  color: #2c3e50;
-  margin-bottom: 1rem;
+.example-prompts {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 2px solid #e0e0e0;
 }
 
-.guide-content h4 {
+.example-prompts h3 {
   color: #2c3e50;
-  margin: 1.5rem 0 1rem;
-}
-
-.guide-content h5 {
-  color: #333;
   margin-bottom: 0.5rem;
+}
+
+.prompts-description {
+  color: #666;
+  margin-bottom: 2rem;
 }
 
 .instructions {
@@ -591,6 +655,27 @@ p {
   color: #666;
 }
 
+.instructions ol {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+  color: #666;
+}
+
+.instructions li {
+  margin: 0.5rem 0;
+}
+
+.download-link {
+  color: #42b883;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.download-link:hover {
+  text-decoration: underline;
+}
+
+
 .prompt-example {
   margin-bottom: 2rem;
   border: 1px solid #e0e0e0;
@@ -598,14 +683,20 @@ p {
   overflow: hidden;
 }
 
-.prompt-example h5 {
+
+.prompt-header {
   background: #f8f9fa;
   padding: 0.75rem 1rem;
-  margin: 0;
   border-bottom: 1px solid #e0e0e0;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.prompt-example h4 {
+  margin: 0;
+  color: #2c3e50;
+  font-size: 1.1rem;
 }
 
 .copy-button {
@@ -657,5 +748,20 @@ p {
 
 .tips li {
   margin-bottom: 0.25rem;
+}
+
+@media (max-width: 768px) {
+  .paste-container {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .json-textarea {
+    width: 100%;
+  }
+  
+  .example-prompts {
+    margin-top: 2rem;
+  }
 }
 </style>

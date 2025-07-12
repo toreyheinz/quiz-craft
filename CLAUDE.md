@@ -55,7 +55,8 @@ npm run preview
       "question": "Question?",
       "options": ["A", "B", "C", "D"],
       "correctAnswer": 0,
-      "correctAnswerText": "Optional: The correct answer explanation"
+      "correctAnswerText": "Optional: The correct answer text if different from option",
+      "explanation": "Optional: Detailed explanation shown for incorrect answers"
     }]
   }]
 }
