@@ -1,0 +1,151 @@
+{
+  "title": "World History Assessment",
+  "description": "This assessment covers key events, figures, and concepts in world history, suitable for high school students. It consists of 20 multiple-choice questions.",
+  "subjects": [
+    {
+      "name": "World History",
+      "questions": [
+        {
+          "id": 1,
+          "question": "Who painted the ceiling of the Sistine Chapel?",
+          "options": ["Leonardo da Vinci", "Michelangelo", "Raphael", "Donatello"],
+          "correctAnswer": 1
+        },
+        {
+          "id": 2,
+          "question": "Julius Caesar was assassinated in which year?",
+          "options": ["44 BCE", "27 BCE", "14 CE", "70 CE"],
+          "correctAnswer": 0
+        },
+        {
+          "id": 3,
+          "question": "Who was the Greek historian known as the 'Father of History'?",
+          "options": ["Plato", "Aristotle", "Herodotus", "Thucydides"],
+          "correctAnswer": 2
+        },
+        {
+          "id": 4,
+          "question": "Martin Luther's Ninety-Five Theses were primarily concerned with:",
+          "options": ["Corruption in the Church", "The sale of indulgences", "Papal infallibility", "Clerical celibacy"],
+          "correctAnswer": 1
+        },
+        {
+          "id": 5,
+          "question": "Which document, signed in 1215, limited the powers of the English king?",
+          "options": ["The Magna Carta", "The English Bill of Rights", "The Petition of Right", "The Domesday Book"],
+          "correctAnswer": 0
+        },
+        {
+          "id": 6,
+          "question": "The Roman Republic was founded in which year?",
+          "options": ["509 BCE", "753 BCE", "476 CE", "27 BCE"],
+          "correctAnswer": 0
+        },
+        {
+          "id": 7,
+          "question": "Which civilization is credited with the invention of writing (cuneiform)?",
+          "options": ["Babylonian", "Sumerian", "Assyrian", "Persian"],
+          "correctAnswer": 1
+        },
+        {
+          "id": 8,
+          "question": "Who was the Macedonian king who created a vast empire in the 4th century BCE?",
+          "options": ["Philip II", "Alexander the Great", "Pericles", "Leonidas"],
+          "correctAnswer": 1
+        },
+        {
+          "id": 9,
+          "question": "What was the Peace of Augsburg (1555)?",
+          "options": [
+            "A treaty ending the Hundred Years' War",
+            "A settlement allowing princes to choose Lutheranism or Catholicism",
+            "An agreement uniting the German states",
+            "A papal bull condemning Protestantism"
+          ],
+          "correctAnswer": 1
+        },
+        {
+          "id": 10,
+          "question": "Charlemagne was crowned emperor in what year?",
+          "options": ["476 CE", "732 CE", "800 CE", "843 CE"],
+          "correctAnswer": 2
+        },
+        {
+          "id": 11,
+          "question": "Which emperor made Christianity the favored religion of the Roman Empire?",
+          "options": ["Constantine", "Nero", "Augustus", "Diocletian"],
+          "correctAnswer": 0
+        },
+        {
+          "id": 12,
+          "question": "What was the significance of the Edict of Nantes (1598)?",
+          "options": [
+            "It ended the Thirty Years' War",
+            "It legalized Calvinism in the Netherlands",
+            "It granted religious freedom to French Protestants",
+            "It established Anglicanism in England"
+          ],
+          "correctAnswer": 2
+        },
+        {
+          "id": 13,
+          "question": "Which war ended with the Treaty of Westphalia in 1648?",
+          "options": [
+            "The Thirty Years' War",
+            "The English Civil War",
+            "The War of the Roses",
+            "The Franco-Spanish War"
+          ],
+          "correctAnswer": 0
+        },
+        {
+          "id": 14,
+          "question": "Which explorer first circumnavigated the globe?",
+          "options": ["Christopher Columbus", "Vasco da Gama", "Ferdinand Magellan", "John Cabot"],
+          "correctAnswer": 2
+        },
+        {
+          "id": 15,
+          "question": "Who wrote 'The City of God'?",
+          "options": ["Boethius", "St. Augustine", "Jerome", "Origen"],
+          "correctAnswer": 1
+        },
+        {
+          "id": 16,
+          "question": "What was the primary effect of the Black Death on European society?",
+          "options": ["Strengthened the power of the Church", "Decreased wages", "Increased population", "Weakened feudalism"],
+          "correctAnswer": 3
+        },
+        {
+          "id": 17,
+          "question": "Which invention greatly contributed to the spread of Renaissance ideas?",
+          "options": ["The compass", "The printing press", "Gunpowder", "The telescope"],
+          "correctAnswer": 1
+        },
+        {
+          "id": 18,
+          "question": "The primary language of the Byzantine Empire was:",
+          "options": ["Latin", "Greek", "Coptic", "Aramaic"],
+          "correctAnswer": 1
+        },
+        {
+          "id": 19,
+          "question": "Which war was fought between Athens and Sparta in the 5th century BCE?",
+          "options": ["Trojan War", "Peloponnesian War", "Punic War", "Greco-Persian War"],
+          "correctAnswer": 1
+        },
+        {
+          "id": 20,
+          "question": "What event sparked the First Crusade?",
+          "options": [
+            "The fall of Constantinople",
+            "The Council of Clermont",
+            "The capture of Jerusalem",
+            "The excommunication of the Byzantine emperor"
+          ],
+          "correctAnswer": 1
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,146 @@
+{
+  "title": "Spanish Language Level 2 Assessment",
+  "description": "An intermediate-level assessment for Spanish learners focusing on vocabulary, grammar, reading comprehension, and cultural knowledge, with an emphasis on present and past tenses and Hispanic culture.",
+  "subjects": [
+    {
+      "name": "Vocabulary",
+      "questions": [
+        {
+          "id": 1,
+          "question": "What is the Spanish word for 'book'?",
+          "options": ["Libro", "Coche", "Mesa", "Sol"],
+          "correctAnswer": 0
+        },
+        {
+          "id": 2,
+          "question": "How do you say 'to travel' in Spanish?",
+          "options": ["Comer", "Viajar", "Dormir", "Estudiar"],
+          "correctAnswer": 1
+        },
+        {
+          "id": 3,
+          "question": "What does 'rápido' mean in English?",
+          "options": ["Slow", "Fast", "Big", "Small"],
+          "correctAnswer": 1
+        },
+        {
+          "id": 4,
+          "question": "Which word means 'family'?",
+          "options": ["Amigo", "Casa", "Familia", "Trabajo"],
+          "correctAnswer": 2
+        },
+        {
+          "id": 5,
+          "question": "What is the Spanish word for 'yesterday'?",
+          "options": ["Hoy", "Mañana", "Ayer", "Ahora"],
+          "correctAnswer": 2
+        }
+      ]
+    },
+    {
+      "name": "Grammar",
+      "questions": [
+        {
+          "id": 6,
+          "question": "What is the correct present tense conjugation of 'hablar' for 'yo'?",
+          "options": ["Hablas", "Hablo", "Habla", "Hablamos"],
+          "correctAnswer": 1
+        },
+        {
+          "id": 7,
+          "question": "Which is the correct past tense (preterite) of 'comer' for 'tú'?",
+          "options": ["Comiste", "Comió", "Comí", "Comimos"],
+          "correctAnswer": 0
+        },
+        {
+          "id": 8,
+          "question": "Choose the correct form of 'ser' in the sentence: 'Ella ___ muy amable.'",
+          "options": ["Es", "Eres", "Son", "Somos"],
+          "correctAnswer": 0
+        },
+        {
+          "id": 9,
+          "question": "What is the correct past tense (imperfect) of 'vivir' for 'nosotros'?",
+          "options": ["Vivimos", "Vivíamos", "Vivisteis", "Vivieron"],
+          "correctAnswer": 1
+        },
+        {
+          "id": 10,
+          "question": "Which pronoun replaces 'María' in 'Doy el libro a María'?",
+          "options": ["Lo", "La", "Le", "Les"],
+          "correctAnswer": 2
+        }
+      ]
+    },
+    {
+      "name": "Reading Comprehension",
+      "questions": [
+        {
+          "id": 11,
+          "question": "Read: 'Ayer, Juan fue al mercado y compró frutas.' What did Juan buy?",
+          "options": ["Clothes", "Fruits", "Books", "Toys"],
+          "correctAnswer": 1
+        },
+        {
+          "id": 12,
+          "question": "Read: 'María siempre lee un libro antes de dormir.' When does María read?",
+          "options": ["In the morning", "At noon", "Before sleeping", "After eating"],
+          "correctAnswer": 2
+        },
+        {
+          "id": 13,
+          "question": "Read: 'El año pasado viajamos a México.' Where did they travel?",
+          "options": ["Spain", "Argentina", "Mexico", "Peru"],
+          "correctAnswer": 2
+        },
+        {
+          "id": 14,
+          "question": "Read: 'La fiesta comienza a las ocho.' What time does the party start?",
+          "options": ["Seven", "Eight", "Nine", "Ten"],
+          "correctAnswer": 1
+        },
+        {
+          "id": 15,
+          "question": "Read: 'Pedro estudia español porque quiere hablar con sus amigos.' Why does Pedro study Spanish?",
+          "options": ["To travel", "To work", "To talk with friends", "To read books"],
+          "correctAnswer": 2
+        }
+      ]
+    },
+    {
+      "name": "Cultural Knowledge",
+      "questions": [
+        {
+          "id": 16,
+          "question": "What is a famous Mexican holiday celebrating the dead?",
+          "options": ["Día de los Muertos", "Cinco de Mayo", "Día de la Independencia", "Navidad"],
+          "correctAnswer": 0
+        },
+        {
+          "id": 17,
+          "question": "Which dance is associated with Argentina?",
+          "options": ["Salsa", "Tango", "Flamenco", "Merengue"],
+          "correctAnswer": 1
+        },
+        {
+          "id": 18,
+          "question": "What is a traditional Spanish dish made with rice and seafood?",
+          "options": ["Tacos", "Paella", "Empanadas", "Ceviche"],
+          "correctAnswer": 1
+        },
+        {
+          "id": 19,
+          "question": "Who is a famous Colombian singer known for 'Hips Don’t Lie'?",
+          "options": ["Shakira", "Jennifer Lopez", "Gloria Estefan", "Selena"],
+          "correctAnswer": 0
+        },
+        {
+          "id": 20,
+          "question": "What is the capital city of Peru?",
+          "options": ["Buenos Aires", "Lima", "Santiago", "Bogotá"],
+          "correctAnswer": 1
+        }
+      ]
+    }
+  ]
+}

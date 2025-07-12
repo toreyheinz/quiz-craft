@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>9th Grade Readiness Quiz</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2rem; }
+    h1, h2 { color: #2c3e50; }
+    .question { margin-bottom: 1.5rem; }
+    .question h3 { margin-bottom: 0.5rem; }
+    .result { margin-top: 2rem; font-size: 1.2rem; font-weight: bold; color: green; }
+    button { margin-top: 2rem; padding: 10px 20px; font-size: 1rem; }
+  </style>
+</head>
+<body>
+  <h1>9th Grade Readiness Quiz</h1>
+  <form id="quizForm">
+    <div id="questions"></div>
+    <button type="submit">Submit Quiz</button>
+  </form>
+  <div class="result" id="result"></div>
+
+  <script>
+    const questions = [
+      { q: "Who wrote the Declaration of Independence?", a: 1, options: ["George Washington", "Thomas Jefferson", "Abraham Lincoln", "John Adams"] },
+      { q: "What was a main cause of the American Civil War?", a: 2, options: ["The War of 1812", "The Gold Rush", "Disagreements over slavery", "Industrialization"] },
+      { q: "What ancient civilization built the pyramids of Egypt?", a: 2, options: ["Romans", "Mesopotamians", "Egyptians", "Greeks"] },
+      { q: "What is the purpose of the U.S. Constitution?", a: 1, options: ["To declare independence", "To organize the government", "To end the Civil War", "To buy land from France"] },
+      { q: "Which two men were key figures in the American Revolution?", a: 3, options: ["Jefferson and Franklin", "Lincoln and Davis", "Edison and Ford", "Washington and King George"] },
+      { q: "Which war occurred from 1939 to 1945?", a: 3, options: ["Korean War", "World War I", "Vietnam War", "World War II"] },
+      { q: "When did the Great Depression take place?", a: 2, options: ["1910s", "1920s", "1930s", "1950s"] },
+      { q: "What was the goal of the Civil Rights Movement?", a: 1, options: ["Equal rights for African Americans", "Independence from Britain", "End World War II", "Expand U.S. territory"] },
+
+      { q: "Which of the following is NOT a continent?", a: 2, options: ["Africa", "Europe", "Greenland", "Australia"] },
+      { q: "How many oceans are there?", a: 2, options: ["3", "4", "5", "6"] },
+      { q: "What is the longest river in the United States?", a: 1, options: ["Mississippi", "Missouri", "Colorado", "Ohio"] },
+      { q: "Which hemisphere is the U.S. in?", a: 2, options: ["Southern", "Eastern", "Western", "Central"] },
+      { q: "What is the capital of Canada?", a: 3, options: ["Toronto", "Montreal", "Vancouver", "Ottawa"] },
+      { q: "Which mountain range is in the western U.S.?", a: 2, options: ["Appalachians", "Andes", "Rockies", "Alps"] },
+      { q: "Which country borders the U.S. to the south?", a: 2, options: ["Canada", "Cuba", "Mexico", "Brazil"] },
+      { q: "Lines of latitude measure distance from what?", a: 1, options: ["The Equator", "The poles", "The International Date Line", "Prime Meridian"] },
+
+      { q: "Which is NOT a state of matter?", a: 2, options: ["Solid", "Plasma", "Light", "Gas"] },
+      { q: "What is the basic unit of life?", a: 2, options: ["Organ", "Tissue", "Cell", "Gene"] },
+      { q: "Which planet is closest to the sun?", a: 3, options: ["Venus", "Mars", "Earth", "Mercury"] },
+      { q: "What gas do humans need to breathe?", a: 1, options: ["Oxygen", "Nitrogen", "Hydrogen", "Carbon Dioxide"] },
+      { q: "What process do plants use to make food?", a: 2, options: ["Germination", "Fermentation", "Photosynthesis", "Respiration"] },
+      { q: "What is Newton’s First Law also called?", a: 2, options: ["Law of Gravity", "Law of Energy", "Law of Inertia", "Law of Attraction"] },
+      { q: "Which part of an atom is positively charged?", a: 2, options: ["Electron", "Neutron", "Proton", "Nucleus"] },
+      { q: "Which organ pumps blood?", a: 2, options: ["Brain", "Lungs", "Heart", "Liver"] },
+
+      { q: "Simplify: 4x + 3x - 2 =", a: 0, options: ["7x - 2", "12x", "x + 2", "4x - 1"] },
+      { q: "Area of a rectangle with length 5 and width 3 is:", a: 1, options: ["8", "15", "18", "10"] },
+      { q: "Solve for x: 2x + 5 = 11", a: 1, options: ["6", "3", "8", "4"] },
+      { q: "Value of 3² + 4² is:", a: 1, options: ["12", "25", "49", "19"] },
+      { q: "Convert 0.75 to a fraction:", a: 2, options: ["1/4", "2/5", "3/4", "4/5"] },
+      { q: "Slope between (0, 0) and (2, 4) is:", a: 1, options: ["1", "2", "4", "0.5"] },
+      { q: "Volume of a cube with side length 3 is:", a: 2, options: ["6", "9", "27", "18"] },
+      { q: "Which is a prime number?", a: 1, options: ["15", "11", "12", "21"] },
+
+      { q: "Subject and predicate: 'The dog barked loudly.'", a: 1, options: ["Subject: loudly, Predicate: barked", "Subject: dog, Predicate: barked loudly", "Subject: The, Predicate: dog barked", "Subject: barked, Predicate: dog loudly"] },
+      { q: "A metaphor is:", a: 3, options: ["A comparison using 'like' or 'as'", "An exaggeration", "A word that imitates sound", "A direct comparison without 'like' or 'as'"] },
+      { q: "Which is a run-on sentence?", a: 0, options: ["I like ice cream it is my favorite dessert.", "I like ice cream.", "My favorite dessert is ice cream.", "Ice cream is good."] },
+      { q: "Correct this sentence: 'Their going to the mall later.'", a: 0, options: ["They're going to the mall later.", "There going to the mall later.", "Theres going to the mall later.", "They’re mall going later."] },
+      { q: "The theme of a story is:", a: 2, options: ["The main character", "The plot", "The central message or lesson", "The setting"] },
+      { q: "Who wrote Romeo and Juliet?", a: 1, options: ["Charles Dickens", "William Shakespeare", "Mark Twain", "J.K. Rowling"] },
+      { q: "Simile vs. Metaphor:", a: 1, options: ["Simile is more poetic", "Simile uses 'like' or 'as,' metaphor does not", "Similes compare animals only", "Metaphors are always longer"] },
+      { q: "'She had walked to school before the bell rang.' Verb tense?", a: 2, options: ["Simple past", "Present perfect", "Past perfect", "Future perfect"] },
+    ];
+
+    const quizContainer = document.getElementById("questions");
+
+    questions.forEach((q, index) => {
+      const div = document.createElement("div");
+      div.className = "question";
+      div.innerHTML = `<h3>${index + 1}. ${q.q}</h3>` +
+        q.options.map((opt, i) => `
+          <label><input type="radio" name="q${index}" value="${i}" required> ${opt}</label><br>
+        `).join("");
+      quizContainer.appendChild(div);
+    });
+
+    document.getElementById("quizForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      let score = 0;
+      questions.forEach((q, i) => {
+        const selected = document.querySelector(`input[name=q${i}]:checked`);
+        if (selected && parseInt(selected.value) === q.a) score++;
+      });
+      document.getElementById("result").textContent = `You scored ${score} out of ${questions.length}`;
+    });
+  </script>
+</body>
+</html>
