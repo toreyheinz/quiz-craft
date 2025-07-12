@@ -110,6 +110,27 @@
         </div>
       </div>
 
+      <div v-if="incorrectAnswers.length > 0" class="incorrect-answers">
+        <h3>Review Incorrect Answers:</h3>
+        <div v-for="(item, index) in incorrectAnswers" :key="index" class="incorrect-item">
+          <div class="question-header">
+            <span class="question-number">Question {{ item.questionNumber }}</span>
+            <span class="subject-tag">{{ item.subject }}</span>
+          </div>
+          <p class="question-text">{{ item.question }}</p>
+          <div class="answer-comparison">
+            <div class="user-answer wrong">
+              <span class="label">Your answer:</span>
+              <span class="answer-text">{{ item.userAnswer }}</span>
+            </div>
+            <div class="correct-answer">
+              <span class="label">Correct answer:</span>
+              <span class="answer-text">{{ item.correctAnswer }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <router-link to="/" class="nav-button primary">
         Back to Home
       </router-link>
@@ -136,6 +157,7 @@ const score = ref(0)
 const subjectScores = ref([])
 const skippedCount = ref(0)
 const answeredQuestions = ref(0)
+const incorrectAnswers = ref([])
 
 const questionsPerPage = 5
 
@@ -194,6 +216,7 @@ const calculateScore = () => {
   let totalSkipped = 0
   let totalAnswered = 0
   const subjectData = {}
+  const incorrectList = []
 
   assessmentData.value.subjects.forEach(subject => {
     subjectData[subject.name] = { correct: 0, total: 0, skipped: 0, answered: 0 }
@@ -213,6 +236,15 @@ const calculateScore = () => {
         if (answers.value[question.id] === question.correctAnswer) {
           totalScore++
           subjectData[subject.name].correct++
+        } else {
+          // Track incorrect answers
+          incorrectList.push({
+            questionNumber: question.id,
+            question: question.question,
+            userAnswer: question.options[answers.value[question.id]],
+            correctAnswer: question.options[question.correctAnswer],
+            subject: subject.name
+          })
         }
       }
     })
@@ -221,6 +253,7 @@ const calculateScore = () => {
   score.value = totalScore
   skippedCount.value = totalSkipped
   answeredQuestions.value = totalAnswered
+  incorrectAnswers.value = incorrectList
   
   subjectScores.value = Object.entries(subjectData).map(([name, data]) => ({
     name,
@@ -478,5 +511,98 @@ onUnmounted(() => {
   text-align: center;
   padding: 4rem;
   color: #666;
+}
+
+.incorrect-answers {
+  margin-top: 2rem;
+  text-align: left;
+}
+
+.incorrect-answers h3 {
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  font-size: 1.2rem;
+}
+
+.incorrect-item {
+  background: #f8f9fa;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.question-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.question-number {
+  font-weight: bold;
+  color: #495057;
+}
+
+.subject-tag {
+  background: #e9ecef;
+  color: #495057;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+}
+
+.question-text {
+  color: #333;
+  margin-bottom: 1rem;
+  font-size: 1.05rem;
+}
+
+.answer-comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.user-answer,
+.correct-answer {
+  padding: 1rem;
+  border-radius: 6px;
+}
+
+.user-answer.wrong {
+  background: #fee;
+  border: 1px solid #fcc;
+}
+
+.correct-answer {
+  background: #e8f5e9;
+  border: 1px solid #c8e6c9;
+}
+
+.label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.user-answer .label {
+  color: #d32f2f;
+}
+
+.correct-answer .label {
+  color: #388e3c;
+}
+
+.answer-text {
+  color: #333;
+  font-size: 1rem;
+}
+
+@media (max-width: 600px) {
+  .answer-comparison {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
