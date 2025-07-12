@@ -1,0 +1,23 @@
+{
+  "title": "10th Grade Readiness Assessment",
+  "description": "Sample assessment for 10th grade students",
+  "subjects": [
+    {
+      "name": "Sample Questions",
+      "questions": [
+        {
+          "id": 1,
+          "question": "This is a sample question for 10th grade assessment",
+          "options": ["Option A", "Option B", "Option C", "Option D"],
+          "correctAnswer": 0
+        },
+        {
+          "id": 2,
+          "question": "Another sample question",
+          "options": ["Choice 1", "Choice 2", "Choice 3", "Choice 4"],
+          "correctAnswer": 1
+        }
+      ]
+    }
+  ]
+}

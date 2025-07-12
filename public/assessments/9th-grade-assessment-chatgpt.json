@@ -1,0 +1,296 @@
+{
+  "title": "9th Grade Readiness Assessment (ChatGPT)",
+  "description": "Test your knowledge in History, Geography, Science, Math, and Language Arts",
+  "subjects": [
+    {
+      "name": "History",
+      "questions": [
+        {
+          "id": 1,
+          "question": "Who wrote the Declaration of Independence?",
+          "options": ["George Washington", "Thomas Jefferson", "Abraham Lincoln", "John Adams"],
+          "correctAnswer": 1
+        },
+        {
+          "id": 2,
+          "question": "What was a main cause of the American Civil War?",
+          "options": ["The War of 1812", "The Gold Rush", "Disagreements over slavery", "Industrialization"],
+          "correctAnswer": 2
+        },
+        {
+          "id": 3,
+          "question": "What ancient civilization built the pyramids of Egypt?",
+          "options": ["Romans", "Mesopotamians", "Egyptians", "Greeks"],
+          "correctAnswer": 2
+        },
+        {
+          "id": 4,
+          "question": "What is the purpose of the U.S. Constitution?",
+          "options": ["To declare independence", "To organize the government", "To end the Civil War", "To buy land from France"],
+          "correctAnswer": 1
+        },
+        {
+          "id": 5,
+          "question": "Which two men were key figures in the American Revolution?",
+          "options": ["Jefferson and Franklin", "Lincoln and Davis", "Edison and Ford", "Washington and King George"],
+          "correctAnswer": 0
+        },
+        {
+          "id": 6,
+          "question": "Which war occurred from 1939 to 1945?",
+          "options": ["Korean War", "World War I", "Vietnam War", "World War II"],
+          "correctAnswer": 3
+        },
+        {
+          "id": 7,
+          "question": "When did the Great Depression take place?",
+          "options": ["1910s", "1920s", "1930s", "1950s"],
+          "correctAnswer": 2
+        },
+        {
+          "id": 8,
+          "question": "What was the goal of the Civil Rights Movement?",
+          "options": ["Equal rights for African Americans", "Independence from Britain", "End World War II", "Expand U.S. territory"],
+          "correctAnswer": 0
+        }
+      ]
+    },
+    {
+      "name": "Geography",
+      "questions": [
+        {
+          "id": 9,
+          "question": "Which of the following is NOT a continent?",
+          "options": ["Africa", "Europe", "Greenland", "Australia"],
+          "correctAnswer": 2
+        },
+        {
+          "id": 10,
+          "question": "How many oceans are there?",
+          "options": ["3", "4", "5", "6"],
+          "correctAnswer": 2
+        },
+        {
+          "id": 11,
+          "question": "What is the longest river in the United States?",
+          "options": ["Mississippi", "Missouri", "Colorado", "Ohio"],
+          "correctAnswer": 1
+        },
+        {
+          "id": 12,
+          "question": "Which hemisphere is the U.S. in?",
+          "options": ["Southern", "Eastern", "Western", "Central"],
+          "correctAnswer": 2
+        },
+        {
+          "id": 13,
+          "question": "What is the capital of Canada?",
+          "options": ["Toronto", "Montreal", "Vancouver", "Ottawa"],
+          "correctAnswer": 3
+        },
+        {
+          "id": 14,
+          "question": "Which mountain range is in the western U.S.?",
+          "options": ["Appalachians", "Andes", "Rockies", "Alps"],
+          "correctAnswer": 2
+        },
+        {
+          "id": 15,
+          "question": "Which country borders the U.S. to the south?",
+          "options": ["Canada", "Cuba", "Mexico", "Brazil"],
+          "correctAnswer": 2
+        },
+        {
+          "id": 16,
+          "question": "Lines of latitude measure distance from what?",
+          "options": ["The Equator", "The poles", "The International Date Line", "Prime Meridian"],
+          "correctAnswer": 0
+        }
+      ]
+    },
+    {
+      "name": "Science",
+      "questions": [
+        {
+          "id": 17,
+          "question": "Which is NOT a state of matter?",
+          "options": ["Solid", "Plasma", "Light", "Gas"],
+          "correctAnswer": 2
+        },
+        {
+          "id": 18,
+          "question": "What is the basic unit of life?",
+          "options": ["Organ", "Tissue", "Cell", "Gene"],
+          "correctAnswer": 2
+        },
+        {
+          "id": 19,
+          "question": "Which planet is closest to the sun?",
+          "options": ["Venus", "Mars", "Earth", "Mercury"],
+          "correctAnswer": 3
+        },
+        {
+          "id": 20,
+          "question": "What gas do humans need to breathe?",
+          "options": ["Oxygen", "Nitrogen", "Hydrogen", "Carbon Dioxide"],
+          "correctAnswer": 0
+        },
+        {
+          "id": 21,
+          "question": "What process do plants use to make food?",
+          "options": ["Germination", "Fermentation", "Photosynthesis", "Respiration"],
+          "correctAnswer": 2
+        },
+        {
+          "id": 22,
+          "question": "What is Newton's First Law also called?",
+          "options": ["Law of Gravity", "Law of Energy", "Law of Inertia", "Law of Attraction"],
+          "correctAnswer": 2
+        },
+        {
+          "id": 23,
+          "question": "Which part of an atom is positively charged?",
+          "options": ["Electron", "Neutron", "Proton", "Nucleus"],
+          "correctAnswer": 2
+        },
+        {
+          "id": 24,
+          "question": "Which organ pumps blood?",
+          "options": ["Brain", "Lungs", "Heart", "Liver"],
+          "correctAnswer": 2
+        }
+      ]
+    },
+    {
+      "name": "Mathematics",
+      "questions": [
+        {
+          "id": 25,
+          "question": "Simplify: 4x + 3x - 2 =",
+          "options": ["7x - 2", "12x", "x + 2", "4x - 1"],
+          "correctAnswer": 0
+        },
+        {
+          "id": 26,
+          "question": "Area of a rectangle with length 5 and width 3 is:",
+          "options": ["8", "15", "18", "10"],
+          "correctAnswer": 1
+        },
+        {
+          "id": 27,
+          "question": "Solve for x: 2x + 5 = 11",
+          "options": ["6", "3", "8", "4"],
+          "correctAnswer": 1
+        },
+        {
+          "id": 28,
+          "question": "Value of 3² + 4² is:",
+          "options": ["12", "25", "49", "19"],
+          "correctAnswer": 1
+        },
+        {
+          "id": 29,
+          "question": "Convert 0.75 to a fraction:",
+          "options": ["1/4", "2/5", "3/4", "4/5"],
+          "correctAnswer": 2
+        },
+        {
+          "id": 30,
+          "question": "Slope between (0, 0) and (2, 4) is:",
+          "options": ["1", "2", "4", "0.5"],
+          "correctAnswer": 1
+        },
+        {
+          "id": 31,
+          "question": "Volume of a cube with side length 3 is:",
+          "options": ["6", "9", "27", "18"],
+          "correctAnswer": 2
+        },
+        {
+          "id": 32,
+          "question": "Which is a prime number?",
+          "options": ["15", "11", "12", "21"],
+          "correctAnswer": 1
+        }
+      ]
+    },
+    {
+      "name": "Language Arts",
+      "questions": [
+        {
+          "id": 33,
+          "question": "Subject and predicate: 'The dog barked loudly.'",
+          "options": [
+            "Subject: loudly, Predicate: barked",
+            "Subject: The dog, Predicate: barked loudly",
+            "Subject: The, Predicate: dog barked",
+            "Subject: barked, Predicate: dog loudly"
+          ],
+          "correctAnswer": 1
+        },
+        {
+          "id": 34,
+          "question": "A metaphor is:",
+          "options": [
+            "A comparison using 'like' or 'as'",
+            "An exaggeration",
+            "A word that imitates sound",
+            "A direct comparison without 'like' or 'as'"
+          ],
+          "correctAnswer": 3
+        },
+        {
+          "id": 35,
+          "question": "Which is a run-on sentence?",
+          "options": [
+            "I like ice cream it is my favorite dessert.",
+            "I like ice cream.",
+            "My favorite dessert is ice cream.",
+            "Ice cream is good."
+          ],
+          "correctAnswer": 0
+        },
+        {
+          "id": 36,
+          "question": "Correct this sentence: 'Their going to the mall later.'",
+          "options": [
+            "They're going to the mall later.",
+            "There going to the mall later.",
+            "Theres going to the mall later.",
+            "They're mall going later."
+          ],
+          "correctAnswer": 0
+        },
+        {
+          "id": 37,
+          "question": "The theme of a story is:",
+          "options": ["The main character", "The plot", "The central message or lesson", "The setting"],
+          "correctAnswer": 2
+        },
+        {
+          "id": 38,
+          "question": "Who wrote Romeo and Juliet?",
+          "options": ["Charles Dickens", "William Shakespeare", "Mark Twain", "J.K. Rowling"],
+          "correctAnswer": 1
+        },
+        {
+          "id": 39,
+          "question": "Simile vs. Metaphor:",
+          "options": [
+            "Simile is more poetic",
+            "Simile uses 'like' or 'as,' metaphor does not",
+            "Similes compare animals only",
+            "Metaphors are always longer"
+          ],
+          "correctAnswer": 1
+        },
+        {
+          "id": 40,
+          "question": "'She had walked to school before the bell rang.' Verb tense?",
+          "options": ["Simple past", "Present perfect", "Past perfect", "Future perfect"],
+          "correctAnswer": 2
+        }
+      ]
+    }
+  ]
+}
