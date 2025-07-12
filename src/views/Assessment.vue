@@ -173,12 +173,14 @@ const getQuestionNumber = (index) => {
 const previousPage = () => {
   if (currentPage.value > 0) {
     currentPage.value--
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 }
 
 const nextPage = () => {
   if (!isLastPage.value) {
     currentPage.value++
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 }
 
